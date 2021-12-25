@@ -23,4 +23,42 @@ public class ContactImpl implements IContact{
 		}
 		return list;
 	}
+	
+	@Override
+	public List<Contact> updatePerson(Contact contact) {
+		if(list.isEmpty()) {
+			System.out.println("Record Not found..");
+		}
+		for(Contact contct : list) {
+
+			if (contct.getFirstName().equalsIgnoreCase(contact.getFirstName())) {
+				contct.setFirstName(contact.getFirstName());
+				contct.setLastName(contact.getLastName());
+				contct.setAddress(contact.getAddress());
+				contct.setCity(contact.getCity());
+				contct.setState(contact.getState());
+				contct.setEmail(contact.getEmail());
+				contct.setPhoneNumber(contact.getPhoneNumber());
+				contct.setZip(contact.getZip());
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public void showContacts() {
+		Iterator itr = list.iterator();
+		while(itr.hasNext()) {
+			Contact obj =  (Contact)itr.next();
+			System.out.println("First Name : "+obj.getFirstName());
+			System.out.println("Last Name : "+obj.getLastName());
+			System.out.println("Address : "+obj.getAddress());
+			System.out.println("City : "+obj.getCity());
+			System.out.println("State : "+obj.getState());
+			System.out.println("Email : "+obj.getEmail());
+			System.out.println("Phone Number : "+obj.getPhoneNumber());
+			System.out.println("Zip : "+obj.getZip());
+		}
+	}
+
 }

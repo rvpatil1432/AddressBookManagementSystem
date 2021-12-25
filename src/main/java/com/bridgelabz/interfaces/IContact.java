@@ -9,5 +9,9 @@ import com.bridgelabz.entity.*;
 public interface IContact 
 {
 	public List<Contact> addNewContact(Contact contact);
+	
+	public List<Contact> updatePerson(Contact contact);
+	
+	public void showContacts();
 
 }
