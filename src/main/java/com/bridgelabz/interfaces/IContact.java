@@ -13,5 +13,7 @@ public interface IContact
 	public List<Contact> updatePerson(Contact contact);
 	
 	public void showContacts();
+	
+	public void deleteByName(String firstName);
 
 }

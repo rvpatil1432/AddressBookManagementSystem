@@ -23,7 +23,7 @@ public class ContactImpl implements IContact{
 		}
 		return list;
 	}
-	
+
 	@Override
 	public List<Contact> updatePerson(Contact contact) {
 		if(list.isEmpty()) {
@@ -44,7 +44,7 @@ public class ContactImpl implements IContact{
 		}
 		return list;
 	}
-	
+
 	@Override
 	public void showContacts() {
 		Iterator itr = list.iterator();
@@ -59,6 +59,23 @@ public class ContactImpl implements IContact{
 			System.out.println("Phone Number : "+obj.getPhoneNumber());
 			System.out.println("Zip : "+obj.getZip());
 		}
+	}
+
+	@Override
+	public void deleteByName(String firstName) {
+		try {
+			for (Contact contct : list) {
+				if (contct.getFirstName().equalsIgnoreCase(firstName)) {
+					list.remove(contct);
+					System.out.println("Delete successful");
+				}
+				else {
+					System.out.println("Record not present with given name..");
+				}
+			}
+		}catch(Exception e) {
+			//System.out.println(e.getMessage());
+		}	
 	}
 
 }
