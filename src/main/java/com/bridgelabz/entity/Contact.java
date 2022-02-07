@@ -1,19 +1,35 @@
 package com.bridgelabz.entity;
+
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
+
+import com.bridgelabz.exceptions.ContactPersonException;
+
 /*
  * Entity class to add contact information. 
  */
-public class Contact
-{
-	String firstName,lastName,address,city,state,email;
-	String phoneNumber;
-	String zip;
-	
-	
-	public Contact(String firstName, String lastName, String address, String city,
-			String state, String email, String phoneNumber, String zip)
-	{
+public class Contact {
+	String firstName, lastName, address, city, state, email;
+	long phoneNumber;
+	long zip;
+	boolean patternMatch;
+
+	public Contact(String firstName, String lastName, String address, String city, String state, String email,
+			long phoneNumber, long zip) throws ContactPersonException {
 		this.firstName = firstName;
+		Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}");
+		Predicate<String> predicate = pattern.asPredicate();
+		patternMatch = predicate.test(firstName);
+		if (patternMatch == false) {
+			throw new ContactPersonException("Invalid First Name.",
+					ContactPersonException.ExceptionType.FIRST_NAME_EXCEPTION);
+		}
 		this.lastName = lastName;
+		patternMatch = predicate.test(lastName);
+		if (patternMatch == false) {
+			throw new ContactPersonException("Invalid Last Name.",
+					ContactPersonException.ExceptionType.FIRST_NAME_EXCEPTION);
+		}
 		this.address = address;
 		this.city = city;
 		this.state = state;
@@ -21,18 +37,18 @@ public class Contact
 		this.phoneNumber = phoneNumber;
 		this.zip = zip;
 	}
+//
+//	public Contact() {
+//		this.firstName = "";
+//		this.lastName = "";
+//		this.address = "";
+//		this.city = "";
+//		this.state = "";
+//		this.email = "";
+//		this.phoneNumber = "";
+//		this.zip = "";
+//	}
 
-	public Contact() {
-		this.firstName = "";
-		this.lastName = "";
-		this.address = "";
-		this.city = "";
-		this.state = "";
-		this.email = "";
-		this.phoneNumber = "";
-		this.zip = "";
-	}
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -81,19 +97,19 @@ public class Contact
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String string) {
-		this.phoneNumber = string;
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getZip() {
+	public long getZip() {
 		return zip;
 	}
 
-	public void setZip(String zip) {
+	public void setZip(long zip) {
 		this.zip = zip;
 	}
 
@@ -103,5 +119,4 @@ public class Contact
 				+ ", state=" + state + ", email=" + email + ", phoneNumber=" + phoneNumber + ", zip=" + zip + "]";
 	}
 
-	
 }

@@ -10,7 +10,7 @@ import java.util.ListIterator;
  */
 public class ContactImpl implements IContact{
 
-	Contact contact = new Contact();
+	//Contact contact = new Contact();
 	List<Contact> list = new ArrayList<Contact>();	
 	@Override
 	public List<Contact> addNewContact(Contact contact){
